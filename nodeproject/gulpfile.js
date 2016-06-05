@@ -1,6 +1,7 @@
 var gulp    = require('gulp');
 var jsfiles = ['*.js', 'src/**/*.js'];
 var jshint  = require('gulp-jshint');
+var nodemon = require('gulp-nodemon');
 
 gulp.task('style', function(){
     return gulp.src(jsfiles)
@@ -36,4 +37,17 @@ gulp.task('inject', function(){
     .pipe(
         gulp.dest('./src/views')
     );
+});
+
+gulp.task('serve', ['style', 'inject'], function() {
+    var options = {
+        script      : 'app.js',
+        delayTime   : 1,
+        watch       : jsfiles
+    };
+    
+    return nodemon(options)
+        .on('restart', function(ev){
+            console.log('Restarting server...');    
+        });
 });
