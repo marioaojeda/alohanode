@@ -89,7 +89,11 @@
             </div>
         </div>
     </header>
-
+    <ul>
+        <% for (var i = 0; i < list.length; i++) { %>
+            <li><%=list[i] %></li>
+        <% } %>
+    </ul>
     <!-- Services Section -->
     <section id="services">
         <div class="container">
