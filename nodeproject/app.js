@@ -10,7 +10,13 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-    response.render('index', { list: ['Item1', 'Item2', 'Item3'] });
+    response.render(
+        'index', 
+        { 
+            list: ['Item1', 'Item2', 'Item3'],
+            navigation: ['services', 'portfolio', 'about', 'team', 'contact']
+        }
+    );
 });
 
 app.get('/routing', function(request, response) {
