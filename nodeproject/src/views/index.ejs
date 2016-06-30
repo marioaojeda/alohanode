@@ -59,7 +59,7 @@
                     </li>
                     <% for (var i = 0; i < navigation.length; i++) { %>
                         <li>
-                            <a class="page-scroll" href="#<%=navigation[i] %>"><%=navigation[i] %></a>
+                            <a class="page-scroll" href="#<%=navigation[i].Link %>"><%=navigation[i].Text %></a>
                         </li>    
                     <% } %>
                     <!--
@@ -95,11 +95,7 @@
             </div>
         </div>
     </header>
-    <ul>
-        <% for (var i = 0; i < list.length; i++) { %>
-            <li><%=list[i] %></li>
-        <% } %>
-    </ul>
+
     <!-- Services Section -->
     <section id="services">
         <div class="container">
