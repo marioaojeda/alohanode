@@ -29,20 +29,26 @@ eventRouter.route('/')
 eventRouter.route('/:id')
     .get(function(req, res) {
         var id = req.params.id;
-        
-        res.render('event',
-            {
-            navigation: [
-                { Link: 'services', Text: 'Services'},
-                { Link: 'portfolio', Text: 'Portfolio'},
-                { Link: 'about', Text: 'About'},
-                { Link: 'team', Text: 'Team'},
-                { Link: 'contact', Text: 'Contact'},
-                { Link: 'events', Text: 'Events'}
-                ],
-            events: eventData[id]
-            }
-        );
+        var url = 'mongodb://localhost:27017/eventsApp';
+        mongodb.connect(url, function(err, db) {
+            var collection = db.collection('events');
+            collection.findOne({name: 'Event 1'}, function (err, item) {
+                console.log('aaaa' + item);
+                res.render('event',
+                    {
+                    navigation: [
+                        { Link: 'services', Text: 'Services'},
+                        { Link: 'portfolio', Text: 'Portfolio'},
+                        { Link: 'about', Text: 'About'},
+                        { Link: 'team', Text: 'Team'},
+                        { Link: 'contact', Text: 'Contact'},
+                        { Link: 'events', Text: 'Events'}
+                        ],
+                    events: item
+                    }
+                );
+            })
+        });
     });
 
 module.exports = eventRouter;
